@@ -1,22 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import Downloader from './components/Downloader';
+import EyeTracker from './components/EyeTracker';
+import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom'
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Empresa from './components/Empresa';
+import Contato from './components/Contato';
+import videoBg from './assets/videoBg.mp4'
+import Video from './components/Video';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Router>
+          <Navbar/>
+          <Routes>
+            <Route path='/' exact='true' element={<Home/>}></Route>
+            <Route path='/eyeTracker' element={<EyeTracker/>}></Route>
+          </Routes>
+        </Router>
+
       </header>
     </div>
   );
