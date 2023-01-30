@@ -1,11 +1,19 @@
-import videoBg from '../assets/videoBg.mp4'
+import React, {useContext} from "react";
+import {AuthContext} from "../context/auth";
 
 function Home(){
+
+    const { authenticated, logout } = useContext(AuthContext)
+
+    const handleLogout = () => {
+        logout();
+    }
     return(
-        <div>
-            <h1>Home</h1>
-            <p>Conteúdo da pagina</p>
-        </div>
+        <>
+           <h1>Página Inicial</h1>
+           <p>{String(authenticated)}</p>
+           <button onClick={handleLogout}>Logout</button>
+        </>
     )
 }
 
