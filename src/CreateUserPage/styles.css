@@ -1,0 +1,33 @@
+.create{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0 2rem;
+}
+
+.create .form{
+    background-color: #91698a;
+    width: 100%;
+    max-width: 480px;
+    padding: 0.5rem;
+}
+
+.create .field{
+padding-bottom: 0.5rem;
+}
+
+.create .field label{
+    display: block;
+}
+
+.create .field input{
+    width: 100%;
+    color: black;
+}
+
+.create .actions{
+    text-align: center;
+    margin-top: 0.5ren;
+}

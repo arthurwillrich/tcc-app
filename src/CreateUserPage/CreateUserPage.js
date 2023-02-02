@@ -1,35 +1,35 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/auth";
+import { useNavigate } from "react-router-dom";
+
 import "./styles.css"    
-import { Navigate, useNavigate } from "react-router-dom";
 
 
 
-const LoginPage = () => {
-    const {authenticated, login, logout} = useContext(AuthContext);
+const CreateUserPage = () => {
+    
+    const {createUser} = useContext(AuthContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
-
-
-    const handleLogout = () => {
-        logout();
-    }
-
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log("submit ", {email, password})
-        login(email, password) // context integration
+        console.log("create  ", {email, password})
+
+        createUser(email, password) // context integration
     }
 
-    const handleCreate = () => {
-        navigate("/createUser")
+    // const loadData = async () => {
+    //     const response  = await getPatientList();
+    //     setPatientList(response.data)
+    // }
+
+    const handleExit = () => {
+        navigate("/login")
     }
     return (
-        <div id="login">
-            <h1 className="title"> Login do Sistema</h1>            
+        <div className="create">
             <form className="form" onSubmit={handleSubmit}>
                 <div className="field">
                     <label htmlFor="email">email</label>
@@ -41,13 +41,17 @@ const LoginPage = () => {
                     <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div id="actions">
-                    <button type="submit">Entrar</button>
-                    <button onClick={handleCreate}>Criar Operador</button>
-                    <button onClick={handleLogout}>Sair</button>
+                    <button type="submit">Criar</button>
+                    <button onClick={handleExit}>Sair</button>
                 </div>
             </form>
+
         </div>
+ 
+
+      
+
     )
 }
 
-export default LoginPage;
+export default CreateUserPage;

@@ -10,13 +10,18 @@ import {
 import EyeTracker from './components/EyeTracker';
 import LoginPage from "./LoginPage/LoginPage";
 import Home from "./components/Home"
+import MenuPage from "./MenuPage/MenuPage";
+import EyeTrackerMenuPage from "./EyeTrackerMenuPage/EyeTrackerMenuPage";
 
 import { AuthProvider, AuthContext } from "./context/auth";
+import CreateUserPage from "./CreateUserPage/CreateUserPage";
+import CreatePatientPage from "./CreatePatientPage/CreatePatientPage";
 
 const AppRoutes = () => {
 
     const Private = ({children}) => {
         const { authenticated, loading } = useContext(AuthContext);
+        console.log(`auth: ${authenticated}`)
         
         if(loading){
             return <div className="loading">Carregando...</div>
@@ -34,8 +39,14 @@ const AppRoutes = () => {
             <AuthProvider>
             <Routes>
                 <Route exact path='/login' element={<LoginPage/>}></Route>
+                <Route exact path='/createUser' element={<CreateUserPage/>}></Route>
                 <Route exact path='/' element={<Private> <Home/> </Private>}></Route>
-                <Route path='/eyeTracker' element={<EyeTracker/>}></Route>
+                <Route exact path='/menu' element={<Private><MenuPage/></Private>}></Route>
+                <Route path='/eyeTracker' element={<Private><EyeTracker/></Private>}></Route>
+                <Route path='/eyeTrackerMenu' element={<Private><EyeTrackerMenuPage/></Private>}></Route>
+                <Route path='/createPatient' element={<Private><CreatePatientPage/></Private>}></Route>
+
+
             </Routes>
             </AuthProvider>
         </Router>

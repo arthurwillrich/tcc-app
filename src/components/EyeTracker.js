@@ -2,6 +2,7 @@ import {useEffect} from 'react'
 import React, { useState } from 'react';
 import Downloader from './Downloader';
 import Video from './Video';
+import { api, uploadCoords } from "../services/api"
 
 
 function EyeTracker(){
@@ -10,7 +11,7 @@ function EyeTracker(){
     useEffect(()=>{
         const webgazer = window.webgazer
         
-      webgazer.setGazeListener(function(data, elapsedTime) {
+      webgazer.setGazeListener(async function(data, elapsedTime) {
       if (data == null) {
           return;
       }

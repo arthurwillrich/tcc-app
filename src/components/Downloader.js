@@ -1,6 +1,8 @@
+import { api, uploadCoords } from "../services/api"
+
 function Downloader( { coords }){
 
-    function makeDownload(){
+    async function makeDownload(){
         var element = document.createElement('a');
         console.log(coords)
         var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(coords));
@@ -11,6 +13,12 @@ function Downloader( { coords }){
         document.body.appendChild(element);
       
         element.click();
+
+        const cpfPatient = localStorage.getItem('cpf');
+
+
+        const response = await uploadCoords(dataStr);
+
       
         document.body.removeChild(element);
     }

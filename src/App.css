@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+button { 
+  color:#050; 
+  font: old 84% 'trebuchet ms',helvetica,sans-serif; 
+  background-color:#fed; 
+  border:1px solid; 
+  border-color: #696 #363 #363 #696; 
+}
+
+
+/* select {
+  
+  background-color: #61dafb;
+  border: none;
+  padding: 0 2%;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  color: #fed;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+
+
+} */
