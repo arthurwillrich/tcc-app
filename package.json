@@ -1,5 +1,10 @@
 {
   "name": "app",
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,12 +12,19 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^5.1.7",
     "axios": "^1.2.6",
+    "fs": "^0.0.1-security",
+    "rc-progress": "^3.4.1",
+    "rc-upload": "^4.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.0",
+    "select": "^1.1.2",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.19"
@@ -40,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3"
   }
 }

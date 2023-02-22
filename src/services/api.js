@@ -40,6 +40,19 @@ export const uploadCoords = async (id, coords) => {
     });
 };
 
+export const uploadVideo = async (videoData, videoName, videoSize) => {
+    console.log("iniciando upload do video para o backend");
+    console.log("API: ", videoSize)
+    const token = localStorage.getItem('token');
+    return api.post("/uploadVideo", {videoData, videoName, videoSize }, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+
+    
+}
+
 export const getPatientList = async () => {
     console.log("dentro5")
 

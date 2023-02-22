@@ -21,11 +21,11 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: black;
+  /* color: black; */
 }
 
 .App-link {
-  color: #61dafb;
+  /* color: #61dafb; */
 }
 
 @keyframes App-logo-spin {
@@ -38,7 +38,7 @@
 }
 
 button { 
-  color:#050; 
+  /* color:#050;  */
   font: old 84% 'trebuchet ms',helvetica,sans-serif; 
   background-color:#fed; 
   border:1px solid; 

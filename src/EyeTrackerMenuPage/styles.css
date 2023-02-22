@@ -1,2 +1,21 @@
-.form .input {
+.init-eyetracker .form{
+    width: 100%;
+    /* max-width: 480px; */
+    padding: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.init-eyetracker .field{
+padding-bottom: 0.5rem;
+}
+
+.init-eyetracker  .field input{
+    width: 100%;
+    color: black;
+}
+
+.init-eyetracker  .selectcpf select{
+    color:black
 }

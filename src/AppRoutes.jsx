@@ -16,6 +16,9 @@ import EyeTrackerMenuPage from "./EyeTrackerMenuPage/EyeTrackerMenuPage";
 import { AuthProvider, AuthContext } from "./context/auth";
 import CreateUserPage from "./CreateUserPage/CreateUserPage";
 import CreatePatientPage from "./CreatePatientPage/CreatePatientPage";
+import UploadVideoPage from "./UploadVideoPage/UploadVideoPage";
+import Video from "./SelectVideo/Video";
+import VideoSelect from "./SelectVideo/VideoSelect";
 
 const AppRoutes = () => {
 
@@ -39,12 +42,17 @@ const AppRoutes = () => {
             <AuthProvider>
             <Routes>
                 <Route exact path='/login' element={<LoginPage/>}></Route>
+
+                <Route exact path='/video' element={<Video/>}></Route>
                 <Route exact path='/createUser' element={<CreateUserPage/>}></Route>
                 <Route exact path='/' element={<Private> <Home/> </Private>}></Route>
                 <Route exact path='/menu' element={<Private><MenuPage/></Private>}></Route>
                 <Route path='/eyeTracker' element={<Private><EyeTracker/></Private>}></Route>
+                
                 <Route path='/eyeTrackerMenu' element={<Private><EyeTrackerMenuPage/></Private>}></Route>
                 <Route path='/createPatient' element={<Private><CreatePatientPage/></Private>}></Route>
+                <Route path='/uploadVideo' element={<Private><UploadVideoPage/></Private>}></Route>
+
 
 
             </Routes>
