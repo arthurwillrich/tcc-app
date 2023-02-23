@@ -1,147 +1,110 @@
-import React, {useEffect, createContext , useContext, useState} from "react";
-import {AuthContext} from "../context/auth";
-import { api, getPatientList } from "../services/api"
+import React, { useEffect, createContext, useContext, useState } from "react";
+import { AuthContext } from "../context/auth";
+import { api, getPatientList } from "../services/api";
 import { TrackerContext } from "../context/tracker";
-import "./styles.css"
+import "./styles.css";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const EyeTrackerMenuPage = () => {
+  const { authenticated, logout, eyeTracker } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
+  const [cpf_responsible, setCpf] = useState();
+  const [list, setPatientList] = useState([]);
+  const [email, setEmail] = useState();
+  const navigate = useNavigate();
+  const [myArray, setMyArray] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
 
-    const { authenticated, logout, eyeTracker } = useContext(AuthContext)
-    // const { goTrack } = useContext(TrackerContext)
-    const [loading, setLoading] = useState(true);
-    const [cpf_responsible, setCpf] = useState();
-    const [list, setPatientList] = useState([]);
-    const [email, setEmail] = useState();
-    const navigate = useNavigate();
-    const [myArray, setMyArray] = useState([]);
+  var cpfList = [];
+  var Patientsobjct = [];
 
-    var cpfList = [];
+  const loadData = async () => {
+    const response = await getPatientList();
+    for (var i = 0; i < response.data.length; i++) {
+      const { cpf_responsible, name } = response.data[i];
+      cpfList.push(cpf_responsible);
+      if (!Patientsobjct.some((item) => item.cpf === cpf_responsible)) {
+        Patientsobjct.push({ cpf: cpf_responsible, name: name });
+      }
+    }
+    setMyArray(Patientsobjct);
+    const uniqueObjects = [
+      ...new Map(myArray.map((item) => [item.cpf, item])).values(),
+    ];
+  };
 
-    const Patients = [
-        { value: 0, label: "Film & Animation" },
-        { value: 0, label: "Autos & Vehicles" },
-        { value: 0, label: "Music" },
-        { value: 0, label: "Pets & Animals" },
-        { value: 0, label: "Sports" },
-    ]
-    var Patientsobjct = [
-    ]
+  useEffect(() => {
+    (async () => await loadData())();
+  }, []);
 
+  const handleLogout = () => {
+    logout();
+  };
 
+  const recoveredUser = localStorage.getItem("user");
 
-    const loadData = async () => {
-        const response  = await getPatientList();
-        console.log("teste1")
-        for (var i = 0; i < response.data.length; i++){
-            cpfList.push(response.data[i].cpf_responsible)
-            console.log("ISSO", {cpf:response.data[i].cpf_responsible})
-            console.log("DEONTRODISSO?",Patientsobjct)
-            if (!Patientsobjct.includes({cpf:response.data[i].cpf_responsible})){
-                console.log("NAO")
-                console.log("ANTESDEPOR", Patientsobjct)
-                Patientsobjct.push({cpf:response.data[i].cpf_responsible})
-                console.log("DPS", Patientsobjct)
-
-            }
-        }
-        // console.log("dentro objecto paciente", Patientsobjct)
-        setMyArray(Patientsobjct)
-        // console.log("Meuarray", myArray)
-        // setCpfList(cpfList)
-        // console.log(response.data)
-        // console.log("cpflist", cpfList)
-        // setPatientList(response.data)
-        // console.log(list)
-
-        const uniqueObjects = [...new Map(myArray.map(item => [item.cpf, item])).values()]
-        // console.log("UNICO", uniqueObjects)
+  useEffect(() => {
+    const recoveredUser = localStorage.getItem("user");
+    if (recoveredUser) {
+      setEmail(JSON.parse(recoveredUser).email);
     }
 
-    useEffect(() => {
-        (async () => await loadData())()
-        // loadData();
-    }, []);
-    
+    setLoading(false);
+  }, []);
 
-    const handleLogout = () => {
-        logout();
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(selectedOption)
+    //navigate("/eyeTracker");
 
-    const recoveredUser = localStorage.getItem('user');
+  };
 
-    useEffect(() => {
-        const recoveredUser = localStorage.getItem('user');
-        if(recoveredUser){
-            setEmail(JSON.parse(recoveredUser).email);
-        }
-
-        setLoading(false);
-    }, [] ); 
-
-    const loadCpfList = async () => {
-        for (var i = 0;; i++) {
-
-            
-            if (i > list.length) break;
-            var tempCpf = list[i].cpf_responsible;
-            console.log(tempCpf)
-            // cpfList.push(tempCpf);
-            console.log(`cpfList: ${cpfList}`)
-
-         }
-    }
+  useEffect(() => {
+    localStorage.setItem("cpf_responsible", JSON.stringify(cpf_responsible));
+  }, [cpf_responsible]);
 
 
-    const handleSubmit = (e) => {
-        loadCpfList()
-        e.preventDefault()
+  const handleSelectOption = (option) => {
+    setSelectedOption(option);
+  };
 
-        console.log(`cpfList ${cpfList} include cpf ${cpf_responsible} `)
-        if (cpfList.includes(cpf_responsible)){
-            console.log("sim")
-            navigate("/eyeTracker")
-
-        } else {
-            console.log(`{nao ${cpf_responsible} e ${list}`)
-        }
-      };
-
-      useEffect(() => {
-        localStorage.setItem('cpf_responsible', JSON.stringify(cpf_responsible));
-      }, [cpf_responsible]);
-
-      const handleChangeTwo = (event) => {
-        console.log(event.currentTarget.value)
-    }
-      
-    // console.log("Meuarray22", myArray)
 
     return(
-            <div className="init-eyetracker">
+        <div className="init-eyetracker">
             <h1>Você está logado(a) como: {email}</h1>
-           <h2>Digite o cpf do paciente que fará a coleta: </h2>
 
-           
-           <form className="form" onSubmit={handleSubmit}>
-           <div className="field">
-                    <label htmlFor="cpf_responsible"></label>
-                    <input type="cpf_responsible" name="cpf_responsible" id="cpf_responsible" value={cpf_responsible} onChange={(e) => setCpf(e.target.value)}/>
-            </div>   
+            <p>Selecione paciente que fará a coleta: </p>
+
             <div id="actions">
 
-            <div className="selectcpf">
-                <select onChange={handleChangeTwo}>
-                    {Patients.map((item, index) => (
-                        <option key={index} value={item.label}>{item.label}</option>
-                    ))}
-            </select>
-            </div>
+            {myArray.length > 0 && (
+            <table>
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                </tr>
+                </thead>
+                <tbody>
+                {myArray.map((patient) => (
+                <tr
+                    key={patient.cpf}
+                    onClick={() => handleSelectOption(patient)}
+                    className={selectedOption === patient ? "selected" : ""}
+                >
+                    <td>{patient.name}</td>
+                    <td>{patient.cpf}</td>
+                </tr>
+                ))}
+                </tbody>
+            </table>
+            )}
+
+
     
-            <button type="submit">Iniciar</button>   
+            <button type="submit" onClick={handleSubmit}>Iniciar</button>   
             <button className="logout" onClick={handleLogout}>Sair</button>
             </div>
-            </form>
             </div>
 
         

@@ -1,6 +1,9 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/auth";
 import { Navigate, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const CreatePatientPage = () => {
 
@@ -13,9 +16,17 @@ const CreatePatientPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("created ", {name, cpf_responsible, type})
+        console.log("created ", {name, cpf_responsible, type});
         createPatient(name, cpf_responsible, type)
-    }
+        .then(() => {
+            toast.success('Paciente criado com sucesso!', {autoClose: 2000});
+            setTimeout(() => navigate('/menu'), 2000);
+          })
+          .catch(() => {
+            toast.error('Falha ao criar paciente. Tente novamente mais tarde.');
+          });
+    };
+    
 
     const handleExit = () => {
         navigate("/menu")
@@ -26,6 +37,7 @@ const CreatePatientPage = () => {
 
         
         <div className="create">
+            <ToastContainer />
             <form className="form" onSubmit={handleSubmit}>
                 <div className="field">
                     <label htmlFor="name">Nome do Paciente</label>
