@@ -7,7 +7,7 @@ import {
     Navigate
 } from "react-router-dom";
 
-import EyeTracker from './components/EyeTracker';
+import EyeTracker from './EyeTracker/EyeTracker';
 import LoginPage from "./LoginPage/LoginPage";
 import Home from "./components/Home"
 import MenuPage from "./MenuPage/MenuPage";

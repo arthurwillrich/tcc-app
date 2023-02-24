@@ -1,6 +1,7 @@
+
 import {useEffect} from 'react'
 import React, { useState } from 'react';
-import Downloader from './Downloader';
+import Downloader from '../components/Downloader';
 import Video from '../SelectVideo/Video';
 import { api, uploadCoords } from "../services/api"
 
