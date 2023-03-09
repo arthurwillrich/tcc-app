@@ -26,11 +26,6 @@ const CreatePatientPage = () => {
             toast.error('Falha ao criar paciente. Tente novamente mais tarde.');
           });
     };
-    
-
-    const handleExit = () => {
-        navigate("/menu")
-    }
  
     
     return (
@@ -50,15 +45,15 @@ const CreatePatientPage = () => {
                 <div>
                     <select id="type" onChange={(e) => setType(parseInt(e.target.value))} >
                         <option value="">Selecione...</option>
-                        <option value="1" >Atípico</option>
-                        <option value="2">Típico</option>
-                        <option value="3">Não definido</option>
+                        <option value="0" >Atípico</option>
+                        <option value="1">Típico</option>
+                        <option value="2">Não definido</option>
                     </select>
                 </div>
 
                 <div id="actions">
                     <button type="submit">Criar</button>
-                    <button onClick={handleExit}>Sair</button>
+                    <button onClick={() => navigate('/menu')}>Retornar ao Menu</button>
                 </div>
             </form>
 

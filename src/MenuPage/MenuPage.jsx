@@ -12,34 +12,18 @@ const MenuPage = () => {
     const [email, setEmail] = useState();
     const navigate = useNavigate();
 
-
-
-
-    
-
-    const handleLogout = () => {
-        logout()
-    }
-
     const recoveredUser = localStorage.getItem('user');
 
     useEffect(() => {
         const recoveredUser = localStorage.getItem('user');
-        if(recoveredUser){
-            setEmail(JSON.parse(recoveredUser).email);
+        if (recoveredUser) {
+          const emailParts = JSON.parse(recoveredUser).email.split('@');
+          const emailWithoutDomain = emailParts[0];
+          setEmail(emailWithoutDomain);
         }
-
         setLoading(false);
-    }, [] ); 
-
-    const handleGoTrackMenu = () => {
-        navigate("/eyeTrackerMenu")
-    };
-    
-    const handleCreatePatient = () => {
-    navigate("/createPatient")
-    };
-
+      }, []);
+      
 
 
     return(
@@ -47,9 +31,12 @@ const MenuPage = () => {
             <h3 className="welcome">Você está logado(a) como: {email}</h3>
 
             <div className="actions">
-                <button className="btn-menu" onClick={handleGoTrackMenu}>Opções de Captura</button>
-                <button className="btn-menu" onClick={handleCreatePatient}>Criar novo paciente</button>
-                <button className="btn-menu" onClick={handleLogout}>Fazer logout</button>
+                <button className="btn-menu" onClick={() => navigate('/patientMenu')}>Opções de Captura</button>
+                <button className="btn-menu" onClick={() => navigate('/createPatient')}>Criar novo paciente</button>
+                <button className="btn-menu" onClick={() => navigate('/uploadVideo')}>Enviar um vídeo</button>
+                <button className="btn-menu" onClick={() => logout()}>Fazer logout</button>
+
+
             </div>
            
             </div>

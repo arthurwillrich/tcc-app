@@ -11,14 +11,17 @@ import EyeTracker from './EyeTracker/EyeTracker';
 import LoginPage from "./LoginPage/LoginPage";
 import Home from "./components/Home"
 import MenuPage from "./MenuPage/MenuPage";
-import EyeTrackerMenuPage from "./EyeTrackerMenuPage/EyeTrackerMenuPage";
 
 import { AuthProvider, AuthContext } from "./context/auth";
 import CreateUserPage from "./CreateUserPage/CreateUserPage";
 import CreatePatientPage from "./CreatePatientPage/CreatePatientPage";
 import UploadVideoPage from "./UploadVideoPage/UploadVideoPage";
 import Video from "./SelectVideo/Video";
-import VideoSelect from "./SelectVideo/VideoSelect";
+import CalibratePage from "./CalibratePage/CalibratePage";
+import PatientMenuPage from "./PatientMenuPage/PatientMenuPage";
+import EyeTrackerMenuPage from "./EyeTrackerMenuPage/EyeTrackerMenuPage";
+import SelectVideoPage from "./SelectVideo/SelectVideoPage";
+import CalibratePageTest from "./CalibratePage/CalibratePageTest";
 
 const AppRoutes = () => {
 
@@ -48,10 +51,15 @@ const AppRoutes = () => {
                 <Route exact path='/' element={<Private> <Home/> </Private>}></Route>
                 <Route exact path='/menu' element={<Private><MenuPage/></Private>}></Route>
                 <Route path='/eyeTracker' element={<Private><EyeTracker/></Private>}></Route>
-                
-                <Route path='/eyeTrackerMenu' element={<Private><EyeTrackerMenuPage/></Private>}></Route>
+                <Route path='/patientMenu' element={<Private><PatientMenuPage/></Private>}></Route>
                 <Route path='/createPatient' element={<Private><CreatePatientPage/></Private>}></Route>
                 <Route path='/uploadVideo' element={<Private><UploadVideoPage/></Private>}></Route>
+                <Route path='/calibrate' element={<Private><CalibratePageTest/></Private>}></Route>
+                <Route path='/eyeTrackerMenu' element={<Private><EyeTrackerMenuPage/></Private>}></Route>
+                <Route path='/selectVideo' element={<Private><SelectVideoPage/></Private>}></Route>
+
+
+
 
 
 

@@ -1,140 +1,31 @@
-.init-eyetracker {
+.eye-tracker-menu {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 14px;
   }
-
-  .init-eyetracker h1 {
+  
+  .eye-tracker-menu h1 {
     margin: 0;
   }
   
-  .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .field {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  label {
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  input {
+  .eye-tracker-menu button {
     padding: 10px;
     border: none;
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  select {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-    background-color: #2196f3;
+    background-color: #009879;
     color: #fff;
     font-weight: bold;
     cursor: pointer;
-    margin-right: 10px;
+    margin: 10px;
   }
   
-  .logout {
-    background-color: #e74c3c;
-    margin-right: 0;
+  .eye-tracker-menu button:hover {
+    background-color: #009879;
   }
   
-/* Estilizando a tabela */
-table {
-    border-collapse: collapse;
+  .eye-tracker-menu button:first-child {
     margin-top: 20px;
-    font-size: 16px;
-    min-width: 500px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    border-radius: 10px 10px 0 0;
-    overflow: hidden;
-  }
-  
-  table thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-    font-weight: bold;
-  }
-  
-  table th,
-  table td {
-    padding: 12px 15px;
-  }
-  
-  table tbody tr {
-    border-bottom: 1px solid #dddddd;
-  }
-  
-  table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-  }
-  
-  table tbody tr:hover {
-    background-color: #f5f5f5;
-    cursor: pointer;
-  }
-  
-  /* Estilizando o botão Iniciar */
-  button[type="submit"] {
-    background-color: #009879;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 12px 20px;
-    margin-top: 20px;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #007a5e;
-  }
-  
-  /* Estilizando o botão Sair */
-  button.logout {
-    background-color: #ffffff;
-    color: #009879;
-    border: 2px solid #009879;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 12px 20px;
-    margin-top: 20px;
-    cursor: pointer;
-  }
-  
-  button.logout:hover {
-    background-color: #009879;
-    color: #ffffff;
-  }
-
-  table tbody tr.selected {
-    background-color: #009879;
-    color: #ffffff;
   }
   

@@ -28,17 +28,25 @@ export const createPatientApi = async (name, cpf_responsible, neuroatipical) => 
         }
     });
 }
-export const uploadCoords = async (id, coords) => {
-    console.log("dentro2")
+export const uploadCoords = async (coords) => {
+    console.log("coords uploadcoords", coords)
+    const selectedPatient = localStorage.getItem('selectedPatient');
+    const parsedObject = JSON.parse(selectedPatient);
+    const videoName = localStorage.getItem('selectedVideo').replace(/"/g, '');
+    const cpf_responsible = parsedObject.cpf;
+
+    console.log(typeof(selectedPatient))
 
     const token = localStorage.getItem('token');
 
-    return api.post(`/patient?idcreateSession=${id}`, {coords},{
+    console.log("FEZ UM POST")
+
+    return api.post(`/coords`, {coords, cpf_responsible, videoName}, {
         headers: {
-            'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`
         }
-    });
-};
+      });
+    };
 
 export const uploadVideo = async (videoData, videoName, videoSize) => {
     console.log("iniciando upload do video para o backend");
@@ -53,10 +61,10 @@ export const uploadVideo = async (videoData, videoName, videoSize) => {
     
 }
 
-export const getPatientList = async () => {
+export const getPatientList = async (token) => {
     console.log("dentro5")
 
-    const token = localStorage.getItem('token');
+    console.log(token)
 
     return api.get(`/patient`, {},{
         headers: {

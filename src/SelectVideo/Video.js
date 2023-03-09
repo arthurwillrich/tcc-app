@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import Select from 'react-select';
+import React from 'react';
 import "./Video.css";
-import * as fs from 'fs';
-import axios from 'axios';
-import VideoSelect from './VideoSelect';
 
 function Video() {
+  const selectedVideo = localStorage.getItem('selectedVideo').replace(/"/g, '');
 
-    return (
-      <div>
-        <h1>Selecione um vídeo:</h1>
-        <VideoSelect />
-      </div>
-    );
-  }
+  return (
+    <div className="background-video">
+      <video src={`http://localhost:5000/videos/${selectedVideo}`} autoPlay />
+    </div>
+  );
+}
 
 export default Video;
